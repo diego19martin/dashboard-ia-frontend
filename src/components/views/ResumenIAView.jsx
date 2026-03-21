@@ -154,7 +154,7 @@ export default function ResumenIAView({ stats, proyectos }) {
       const data = await generarResumenIA(force);
       applyData(data);
     } catch (err) {
-      setError(err.response?.data?.error || 'No se pudo generar el resumen. Verific\u00e1 la conexi\u00f3n e intent\u00e1 de nuevo.');
+      setError(err.response?.data?.error || 'No se pudo generar el resumen. Verificá la conexión e intentá de nuevo.');
     } finally {
       setLoading(false);
     }
@@ -179,7 +179,7 @@ export default function ResumenIAView({ stats, proyectos }) {
       URL.revokeObjectURL(url);
       setPdfDisponible(true);
     } catch {
-      setError('No se pudo generar el PDF. Intent\u00e1 de nuevo.');
+      setError('No se pudo generar el PDF. Intentá de nuevo.');
     } finally {
       setDownloadingPDF(false);
     }
@@ -210,7 +210,7 @@ export default function ResumenIAView({ stats, proyectos }) {
           <h2 className="text-xl font-bold text-slate-100 mb-3">Analizando datos y generando informe ejecutivo...</h2>
           <p className="text-sm text-slate-400 mb-8">Esto puede tomar unos segundos</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-            {['Proyectos', 'M\u00e9tricas', 'Impacto', 'Conclusiones'].map((step, i) => (
+            {['Proyectos', 'Métricas', 'Impacto', 'Conclusiones'].map((step, i) => (
               <div key={step} className={`bg-slate-800/40 rounded-xl p-3 ${i <= 1 ? 'animate-pulse' : 'opacity-40'}`}>
                 <div className="h-2 bg-brand-500/20 rounded-full mb-2" />
                 <p className="text-xs text-slate-500">{step}</p>
@@ -237,7 +237,7 @@ export default function ResumenIAView({ stats, proyectos }) {
           </div>
           <h2 className="text-2xl font-extrabold text-slate-100 mb-3">Resumen Ejecutivo con IA</h2>
           <p className="text-slate-400 mb-8 max-w-md mx-auto leading-relaxed">
-            Gener\u00e1 un informe ejecutivo autom\u00e1tico basado en los datos actuales del portfolio de proyectos. El informe incluye el estado de la adopci\u00f3n de IA, los casos de \u00e9xito, el pipeline y una conclusi\u00f3n para el directorio.
+            Generá un informe ejecutivo automático basado en los datos actuales del portfolio de proyectos. El informe incluye el estado de la adopción de IA, los casos de éxito, el pipeline y una conclusión para el directorio.
           </p>
           {error && (
             <div className="flex items-center gap-2 justify-center text-red-400 text-sm mb-4 bg-red-500/10 border border-red-500/20 rounded-xl p-3">
@@ -274,7 +274,7 @@ export default function ResumenIAView({ stats, proyectos }) {
           <div className="flex items-center gap-3">
             <AlertTriangle className="w-5 h-5 text-yellow-400 flex-shrink-0" />
             <p className="text-sm text-yellow-300">
-              Los datos del Sheet se actualizaron desde la \u00faltima generaci\u00f3n. Se recomienda regenerar el informe.
+              Los datos del Sheet se actualizaron desde la última generación. Se recomienda regenerar el informe.
             </p>
           </div>
           <button
@@ -289,7 +289,7 @@ export default function ResumenIAView({ stats, proyectos }) {
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-slate-100">Informe de Adopci\u00f3n de Automatizaci\u00f3n e IA</h2>
+          <h2 className="text-xl font-extrabold text-slate-100">Informe de Adopción de Automatización e IA</h2>
           <div className="flex items-center gap-3 mt-1.5 flex-wrap">
             <p className="text-sm text-slate-500">
               Generado el {fechaGenerado.toLocaleDateString('es-AR')} a las {fechaGenerado.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}
@@ -332,7 +332,7 @@ export default function ResumenIAView({ stats, proyectos }) {
             className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-brand-400 bg-brand-500/10 border border-brand-500/30 rounded-lg hover:bg-brand-500/20 transition-colors"
           >
             <RefreshCw className="w-3.5 h-3.5" />
-            Forzar regeneraci\u00f3n
+            Forzar regeneración
           </button>
         </div>
       </div>
@@ -346,9 +346,9 @@ export default function ResumenIAView({ stats, proyectos }) {
 
       {metricas && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <MiniKpi icon={CheckCircle2} label="En producci\u00f3n" value={metricas.procesosEnProduccion} color="text-green-400" />
+          <MiniKpi icon={CheckCircle2} label="En producción" value={metricas.procesosEnProduccion} color="text-green-400" />
           <MiniKpi icon={Clock} label="Horas liberadas/mes" value={formatNumber(metricas.horasAhorradas)} color="text-brand-400" />
-          <MiniKpi icon={Building2} label="\u00c1reas alcanzadas" value={`${metricas.areasAlcanzadas}/15`} color="text-blue-400" />
+          <MiniKpi icon={Building2} label="Áreas alcanzadas" value={`${metricas.areasAlcanzadas}/15`} color="text-blue-400" />
           <MiniKpi icon={TrendingUp} label="ROI promedio" value={`${metricas.roiPromedio}%`} color="text-purple-400" />
         </div>
       )}
