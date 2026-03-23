@@ -1,4 +1,4 @@
-import { Clock, TrendingUp } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { ESTADO_COLORS, TIPO_IA_BG } from '../../utils/constants';
 import { formatNumber } from '../../utils/calculations';
 
@@ -21,12 +21,6 @@ function PipelineCard({ proyecto, compact = false }) {
             <Clock className="w-3 h-3" />
             {ahorro} hs/mes potencial
           </span>
-          {proyecto.roi_estimado > 0 && (
-            <span className="flex items-center gap-1 text-purple-400">
-              <TrendingUp className="w-3 h-3" />
-              {proyecto.roi_estimado}% ROI
-            </span>
-          )}
         </div>
       </div>
     );
@@ -51,12 +45,6 @@ function PipelineCard({ proyecto, compact = false }) {
           <Clock className="w-3 h-3" />
           {ahorro} hs/mes potencial
         </span>
-        {proyecto.roi_estimado > 0 && (
-          <span className="flex items-center gap-1 text-purple-400">
-            <TrendingUp className="w-3 h-3" />
-            {proyecto.roi_estimado}% ROI
-          </span>
-        )}
       </div>
     </div>
   );
@@ -89,21 +77,12 @@ export default function PipelineView({ proyectos, stats }) {
   return (
     <div className="space-y-8">
       <div className="bg-gradient-to-r from-brand-500/10 to-purple-500/10 border border-brand-500/20 rounded-2xl p-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
-          <div>
-            <p className="text-sm text-slate-400 mb-1">Impacto potencial si se implementa todo el pipeline</p>
-            <p className="text-4xl font-extrabold text-brand-400">
-              {formatNumber(stats.pipeline.impactoPotencialHoras)} hs/mes
-            </p>
-            <p className="text-xs text-slate-500 mt-1">horas adicionales que se liberarían</p>
-          </div>
-          <div>
-            <p className="text-sm text-slate-400 mb-1">ROI promedio estimado del pipeline</p>
-            <p className="text-4xl font-extrabold text-purple-400">
-              {stats.pipeline.roiPromedio}%
-            </p>
-            <p className="text-xs text-slate-500 mt-1">retorno sobre inversión promedio</p>
-          </div>
+        <div className="text-center">
+          <p className="text-sm text-slate-400 mb-1">Impacto potencial si se implementa todo el pipeline</p>
+          <p className="text-4xl font-extrabold text-brand-400">
+            {formatNumber(stats.pipeline.impactoPotencialHoras)} hs/mes
+          </p>
+          <p className="text-xs text-slate-500 mt-1">horas adicionales que se liberarían</p>
         </div>
       </div>
 

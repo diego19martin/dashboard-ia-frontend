@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, Copy, FileText, RefreshCw, CheckCircle2, Clock, Building2, TrendingUp, AlertCircle, Bot, AlertTriangle } from 'lucide-react';
+import { Sparkles, Copy, FileText, RefreshCw, CheckCircle2, Clock, Building2, AlertCircle, Bot, AlertTriangle } from 'lucide-react';
 import { generarResumenIA, descargarPDF, getResumenIAStatus } from '../../services/api';
 import { formatNumber } from '../../utils/calculations';
 import ResumenCharts from '../charts/ResumenCharts';
@@ -345,11 +345,10 @@ export default function ResumenIAView({ stats, proyectos }) {
       )}
 
       {metricas && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-3 gap-3">
           <MiniKpi icon={CheckCircle2} label="En producción" value={metricas.procesosEnProduccion} color="text-green-400" />
           <MiniKpi icon={Clock} label="Horas liberadas/mes" value={formatNumber(metricas.horasAhorradas)} color="text-brand-400" />
           <MiniKpi icon={Building2} label="Áreas alcanzadas" value={`${metricas.areasAlcanzadas}/15`} color="text-blue-400" />
-          <MiniKpi icon={TrendingUp} label="ROI promedio" value={`${metricas.roiPromedio}%`} color="text-purple-400" />
         </div>
       )}
 

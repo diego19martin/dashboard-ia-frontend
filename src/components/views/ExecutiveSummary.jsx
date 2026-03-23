@@ -1,4 +1,4 @@
-import { CheckCircle2, Building2, Clock, ShieldCheck, TrendingUp, UserCheck, Users } from 'lucide-react';
+import { CheckCircle2, Building2, Clock, ShieldCheck, UserCheck, Users } from 'lucide-react';
 import KpiCard from '../ui/KpiCard';
 import StatusDonut from '../charts/StatusDonut';
 import HorasBarChart from '../charts/HorasBarChart';
@@ -87,15 +87,6 @@ export default function ExecutiveSummary({ stats }) {
           icono={ShieldCheck}
           color="blue"
           index={5}
-        />
-        <KpiCard
-          titulo="ROI Promedio"
-          valor={stats.roiPromedio}
-          suffix="%"
-          subtexto="retorno sobre inversión"
-          icono={TrendingUp}
-          color="purple"
-          index={6}
         />
       </div>
 

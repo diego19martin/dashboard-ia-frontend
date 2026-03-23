@@ -106,13 +106,7 @@ function ProjectCard({ proyecto, index, isTop }) {
       <div className="flex gap-6">
         <ImpactBar label="Reducción de horas" value={reduccionHoras} color="text-green-400" />
         <ImpactBar label="Reducción de errores" value={reduccionErrores} color="text-blue-400" />
-        <ImpactBar label="ROI" value={Math.min(proyecto.roi_estimado, 100)} color="text-purple-400" />
       </div>
-      {proyecto.roi_estimado > 100 && (
-        <div className="flex justify-end mt-1">
-          <span className="text-xs text-purple-400 font-medium">{proyecto.roi_estimado}% ROI</span>
-        </div>
-      )}
     </div>
   );
 }
