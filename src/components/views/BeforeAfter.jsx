@@ -1,4 +1,4 @@
-import { Users, Clock, AlertTriangle, TrendingUp, ArrowRight } from 'lucide-react';
+import { Users, Clock, ArrowRight } from 'lucide-react';
 import StatusBadge from '../ui/StatusBadge';
 import { TIPO_IA_BG } from '../../utils/constants';
 import { calcReduccion, formatNumber } from '../../utils/calculations';
@@ -22,7 +22,6 @@ function ImpactBar({ label, value, color }) {
 
 function ProjectCard({ proyecto, index, isTop }) {
   const reduccionHoras = calcReduccion(proyecto.horas_antes, proyecto.horas_despues);
-  const reduccionErrores = calcReduccion(proyecto.errores_antes, proyecto.errores_despues);
   const horasAhorradas = proyecto.horas_antes - proyecto.horas_despues;
   const tipoIaBg = TIPO_IA_BG[proyecto.tipo_ia] || 'bg-slate-500/15 text-slate-400';
 
@@ -69,12 +68,6 @@ function ProjectCard({ proyecto, index, isTop }) {
               <Clock className="w-3 h-3" />
               {proyecto.horas_antes} hs/mes
             </span>
-            {proyecto.errores_antes > 0 && (
-              <span className="flex items-center gap-1 text-slate-400">
-                <AlertTriangle className="w-3 h-3" />
-                {proyecto.errores_antes} errores/mes
-              </span>
-            )}
           </div>
         </div>
 
@@ -93,20 +86,11 @@ function ProjectCard({ proyecto, index, isTop }) {
               <Clock className="w-3 h-3" />
               {proyecto.horas_despues} hs/mes
             </span>
-            {proyecto.errores_despues > 0 && (
-              <span className="flex items-center gap-1 text-slate-400">
-                <AlertTriangle className="w-3 h-3" />
-                {proyecto.errores_despues} errores/mes
-              </span>
-            )}
           </div>
         </div>
       </div>
 
-      <div className="flex gap-6">
-        <ImpactBar label="Reducción de horas" value={reduccionHoras} color="text-green-400" />
-        <ImpactBar label="Reducción de errores" value={reduccionErrores} color="text-blue-400" />
-      </div>
+      <ImpactBar label="Reducción de horas" value={reduccionHoras} color="text-green-400" />
     </div>
   );
 }
@@ -129,9 +113,6 @@ export default function BeforeAfter({ proyectos }) {
   const totalHorasAntes = enProduccion.reduce((s, p) => s + p.horas_antes, 0);
   const totalHorasDespues = enProduccion.reduce((s, p) => s + p.horas_despues, 0);
   const totalHorasAhorradas = totalHorasAntes - totalHorasDespues;
-  const totalErroresAntes = enProduccion.reduce((s, p) => s + p.errores_antes, 0);
-  const totalErroresDespues = enProduccion.reduce((s, p) => s + p.errores_despues, 0);
-  const reduccionErroresTotal = calcReduccion(totalErroresAntes, totalErroresDespues);
 
   const fechasProduccion = enProduccion
     .map((p) => p.fecha_produccion)
@@ -151,10 +132,7 @@ export default function BeforeAfter({ proyectos }) {
       <div className="bg-brand-500/10 border border-brand-500/20 rounded-2xl p-6 text-center">
         <p className="text-slate-200 text-base">
           En total, los proyectos en producción liberaron{' '}
-          <span className="text-brand-400 font-bold">{formatNumber(totalHorasAhorradas)} horas/mes</span>
-          {' '}y redujeron{' '}
-          <span className="text-green-400 font-bold">{reduccionErroresTotal}%</span>
-          {' '}los errores operativos.
+          <span className="text-brand-400 font-bold">{formatNumber(totalHorasAhorradas)} horas/mes</span>.
         </p>
         {mesesOperacion && (
           <p className="text-sm text-slate-500 mt-2">

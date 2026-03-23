@@ -1,4 +1,4 @@
-import { CheckCircle2, Building2, Clock, ShieldCheck, UserCheck, Users } from 'lucide-react';
+import { CheckCircle2, Building2, Clock, Users } from 'lucide-react';
 import KpiCard from '../ui/KpiCard';
 import StatusDonut from '../charts/StatusDonut';
 import HorasBarChart from '../charts/HorasBarChart';
@@ -21,17 +21,14 @@ export default function ExecutiveSummary({ stats }) {
           {' '}ya operan con IA en{' '}
           <span className="text-brand-400 font-bold">{stats.areasAlcanzadas} áreas</span>,
           liberando{' '}
-          <span className="text-green-400 font-bold">{formatNumber(stats.horasAhorradas)} horas/mes</span>
-          {stats.fteEquivalente > 0 && (
-            <> (equivalente a <span className="text-green-400 font-bold">{stats.fteEquivalente} recursos</span>)</>
-          )}.
+          <span className="text-green-400 font-bold">{formatNumber(stats.horasAhorradas)} horas/mes</span>.
           {' '}Hay{' '}
           <span className="text-slate-100 font-bold">{pipelineCount} iniciativas</span>
           {' '}adicionales en el pipeline.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <KpiCard
           titulo="En Producción"
           valor={stats.procesosEnProduccion}
@@ -64,29 +61,12 @@ export default function ExecutiveSummary({ stats }) {
           index={2}
         />
         <KpiCard
-          titulo="Recursos Liberados"
-          valor={stats.fteEquivalente}
-          subtexto="personas equivalentes"
-          icono={UserCheck}
-          color="green"
-          index={3}
-        />
-        <KpiCard
           titulo="Personas Impactadas"
           valor={stats.totalPersonasImpactadas}
           subtexto="colaboradores beneficiados"
           icono={Users}
           color="amber"
-          index={4}
-        />
-        <KpiCard
-          titulo="Reducción Errores"
-          valor={stats.erroresReducidos}
-          suffix="%"
-          subtexto="menos errores operativos"
-          icono={ShieldCheck}
-          color="blue"
-          index={5}
+          index={3}
         />
       </div>
 
